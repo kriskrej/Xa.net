@@ -70,23 +70,6 @@ public sealed class AICommandWindow : EditorWindow
     }
 
     #endregion
-
-    #region Script lifecycle
-
-    void OnEnable()
-      => AssemblyReloadEvents.afterAssemblyReload += OnAfterAssemblyReload;
-
-    void OnDisable()
-      => AssemblyReloadEvents.afterAssemblyReload -= OnAfterAssemblyReload;
-
-    void OnAfterAssemblyReload()
-    {
-        if (!TempFileExists) return;
-        EditorApplication.ExecuteMenuItem("Edit/Do Task");
-        AssetDatabase.DeleteAsset(TempFilePath);
-    }
-
-    #endregion
 }
 
 } // namespace AICommand
