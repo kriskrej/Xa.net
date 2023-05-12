@@ -84,6 +84,8 @@ namespace AICommand
 
         private static void OnOnGptAnswerReady(string answer)
         {
+            answer = answer.Replace("\"", "");
+            Debug.Log(answer);
             OnGptAnswerReady?.Invoke(answer);
         }
     }
