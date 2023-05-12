@@ -12,6 +12,7 @@ public class AskButton : MonoBehaviour
     [SerializeField] TMP_Text question;
     [SerializeField] TMP_Text answer;
     [SerializeField] Button button;
+    [SerializeField] private XanetReader xanetReader;
 
     private void Start()
     {
@@ -22,6 +23,12 @@ public class AskButton : MonoBehaviour
     {
         answer.text = gptAnswer;
         button.interactable = true;
+        var ttsInput = new XanetReader.TtsInput()
+        {
+            text = gptAnswer,
+            reader = "sgHWxRCmUjKb2gnTa39T" 
+        };
+        StartCoroutine(xanetReader.DownloadTtsFromElevenLabsCoroutine(ttsInput));
     }
 
     public void OnAskPressed()
