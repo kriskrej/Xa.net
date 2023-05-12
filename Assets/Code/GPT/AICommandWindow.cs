@@ -6,7 +6,7 @@ namespace AICommand
 {
     public sealed class AICommandWindow : EditorWindow
     {
-        static string WrapPrompt(string input)
+        public static string WrapPrompt(string input)
             => "Xanet to team leader, bardzo sarkastyczny skurwysyn, ale czasem miły, " +
                "zawsze wesprze Cię w trudnej sytuacji, ale na codzień jednak lubi Ci dojebać. " +
                "Napisz proszę jak Xanet odpowiedziałby na następujące słowa. " +
@@ -16,7 +16,7 @@ namespace AICommand
 
         void RunGenerator()
         {
-            var code = OpenAIUtil.InvokeChat(WrapPrompt(_prompt));
+            var code = OpenAIUtil.InvokeChatInEditor(WrapPrompt(_prompt));
             Debug.Log("AI command script:" + code);
         }
 

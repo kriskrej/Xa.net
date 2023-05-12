@@ -459,7 +459,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 59110112}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 59110114}
+        m_TargetAssemblyTypeName: AskButton, Assembly-CSharp
+        m_MethodName: OnAskPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &59110112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -510,6 +522,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8732f7007318f74479b3499136ee39be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  question: {fileID: 1451933647}
+  answer: {fileID: 1065392640}
 --- !u!1 &64328460
 GameObject:
   m_ObjectHideFlags: 0
@@ -1355,8 +1369,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4286743170
+  m_fontColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
