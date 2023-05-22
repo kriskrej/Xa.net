@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using AICommand;
 using TMPro;
 using UnityEngine;
@@ -10,18 +7,19 @@ public class AskButton : MonoBehaviour
 {
     
     [SerializeField] TMP_Text question;
-    [SerializeField] TMP_Text answer;
+    [SerializeField] AnswerTextBox answer;
     [SerializeField] Button button;
     [SerializeField] private XanetReader xanetReader;
 
     private void Start()
     {
         OpenAIUtil.OnGptAnswerReady += OnGptAnswerReadyHandler;
+        answer.Clear();
     }
 
     private void OnGptAnswerReadyHandler(string gptAnswer)
     {
-        answer.text = gptAnswer;
+        answer.Type(gptAnswer);
         button.interactable = true;
         var ttsInput = new XanetReader.TtsInput()
         {
@@ -33,8 +31,16 @@ public class AskButton : MonoBehaviour
 
     public void OnAskPressed()
     {
-        StartCoroutine(OpenAIUtil.AskGptCoroutine(AICommandWindow.WrapPrompt(question.text)));
+        StartCoroutine(OpenAIUtil.AskGptCoroutine(WrapPrompt(question.text)));
         button.interactable = false;
     }
+    
+    public static string WrapPrompt(string input)
+        => "Xanet to team leader, bardzo sarkastyczny skurwysyn, ale czasem miły, " +
+           "zawsze wesprze Cię w trudnej sytuacji, ale na codzień jednak lubi Ci dojebać. " +
+           "Napisz proszę jak Xanet odpowiedziałby na następujące słowa. " +
+           "nie dodawaj żadnego opisu, przejdź od razu do słów Xaneta. " +
+           "Słowa na które ma odpowiedzieć to: " +
+           input;
 
 }

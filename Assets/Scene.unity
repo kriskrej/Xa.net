@@ -535,7 +535,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   question: {fileID: 1451933647}
-  answer: {fileID: 1065392640}
+  answer: {fileID: 1065392642}
   button: {fileID: 59110111}
   xanetReader: {fileID: 1389915592}
 --- !u!1 &64328460
@@ -956,6 +956,7 @@ GameObject:
   - component: {fileID: 1065392639}
   - component: {fileID: 1065392641}
   - component: {fileID: 1065392640}
+  - component: {fileID: 1065392642}
   m_Layer: 5
   m_Name: Answer
   m_TagString: Untagged
@@ -1080,6 +1081,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1065392638}
   m_CullTransparentMesh: 1
+--- !u!114 &1065392642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065392638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec4cd6042b12210408a06556c9e29b2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  label: {fileID: 1065392640}
 --- !u!1 &1178140373
 GameObject:
   m_ObjectHideFlags: 0
@@ -1270,6 +1284,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3355e22a609484fb6c7427835b4bca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  photo1: {fileID: 1730017470}
+  photo2: {fileID: 34756995}
 --- !u!4 &1389915593
 Transform:
   m_ObjectHideFlags: 0

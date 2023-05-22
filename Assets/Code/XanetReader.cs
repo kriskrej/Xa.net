@@ -6,9 +6,12 @@ using System.Text;
 using AICommand;
 using UnityEngine;
 using UnityEngine.Networking;
+using Random = UnityEngine.Random;
 
 public class XanetReader : MonoBehaviour
 {
+    [SerializeField] private GameObject photo1;
+    [SerializeField] private GameObject photo2;
     public IEnumerator DownloadTtsFromElevenLabsCoroutine(TtsInput ttsInput)
     {
         Debug.Log("using voice");
@@ -21,7 +24,7 @@ public class XanetReader : MonoBehaviour
         var bodyRaw = Encoding.UTF8.GetBytes(json);
         request.SetRequestHeader("accept", "audio/mpeg");
         request.SetRequestHeader("Content-Type", "application/json");
-        request.SetRequestHeader("xi-api-key", AICommandSettings.instance.elevenApiKey);
+        request.SetRequestHeader("xi-api-key", Credentials.elevenApiKey);
         request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
         yield return request.SendWebRequest();
@@ -48,11 +51,32 @@ public class XanetReader : MonoBehaviour
                 else
                 {
                     var clip = DownloadHandlerAudioClip.GetContent(www);
-                    GetComponent<AudioSource>().PlayOneShot(clip);
+                    var src = GetComponent<AudioSource>();
+                    src.clip = clip;
+                    src.Play();
+                    while (src.isPlaying)
+                    {
+                        yield return new WaitForSeconds(Random.Range(0.05f, 0.3f));
+                        MoveMouth();
+                    }
+
+                    CloseMouth();
                 }
             }
             File.Delete(tempPath);
         }
+    }
+
+    private void CloseMouth()
+    {
+        photo1.SetActive(true);
+        photo2.SetActive(false);
+    }
+
+    private void MoveMouth()
+    {
+        photo1.SetActive(!photo1.activeSelf);
+        photo2.SetActive(!photo2.activeSelf);
     }
 
     [Serializable]
